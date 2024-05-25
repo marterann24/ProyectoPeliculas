@@ -1,33 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState , useEffect} from 'react'
+import {Routes, Route , useNavigate} from "react-router-dom"
 import './App.css'
+import Sesion from './Components/Sesion'
+import Registro from './Components/Registro'
+import {Home} from './Components/Home'
+import Series from './Components/Series'
+import {Perfil} from './Components/Perfil'
+import {Detalle} from './Components/Detalle'
+import {Plan} from './Components/Plan'
+import { Landing } from './Components/Landing'
+import  Buscar  from './Components/Buscar'
+import { Nav } from './Components/Nav'
+import { onAuthStateChanged } from 'firebase/auth'
+import { FirebaseAuth } from './Firebase/config'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [id , setId] = useState(0)
+  const [user , setUser] = useState(null)
+  const navigate = useNavigate()
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+        setUser(usuarioFirebase);
+      } else {
+        setUser(null);
+      }
+    });
+    
+    // Cleanup function to unsubscribe the listener on unmount
+    return () => unsubscribe();
+  }, []);
+
+  console.log(user);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Nav setUser={setUser} user={user}/>
+    <Routes>
+
+        <Route path='/' element={<Landing/>} />
+        <Route path='/home' element={<Home setId={setId}/>} /> 
+        <Route path='/Series' element={<Series/>} /> 
+        <Route path='Inicio-Sesion' element={user?navigate('/Home'):<Sesion/> } />
+        <Route path='Registrar' element={user?navigate('/Home'):<Registro/>} />
+        <Route path='Perfil' element={<Perfil/>} />
+        <Route path={`Detalle:${id}`} element={<Detalle id={id}/>} />
+        <Route path='Plan' element={<Plan/>} />
+        <Route path='Buscar' element={<Buscar/>} />        
+      </Routes>
     </>
   )
 }
