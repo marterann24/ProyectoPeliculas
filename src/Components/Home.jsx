@@ -16,7 +16,6 @@ export const Home = ({setId}) => {
     movieApi()
   },[])
 
-
   return (
     <div className='w-full'>
       <MovieRandom />

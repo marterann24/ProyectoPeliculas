@@ -1,10 +1,32 @@
 body{
     background:linear-gradient(0deg, rgba(0,0,0 ,0.5),rgba(0,0,0 ,0.5)), #1b1b32 ; 
-    position: relative;
-    z-index: 10;
+    
   }
 .tecnologias{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
   align-content: center;
+}
+
+@media (max-width: 1024px) {
+  body.no-scroll {
+    overflow: hidden;
+  }
+  /* … */
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #0009;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  z-index: 1000; /* Asegúrate de que el menú esté por encima de otros contenidos */
+}
+
+.mobile-nav.visible {
+  transform: translateX(0);
 }

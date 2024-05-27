@@ -7,6 +7,7 @@ export const singInWithGoogle = async() =>{
     try {
         const credentials = await signInWithPopup(FirebaseAuth , googleProvider)
         console.log(credentials)
+        return credentials
         
     } catch (error) {
         console.log(error)

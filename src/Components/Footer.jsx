@@ -4,15 +4,25 @@ import { FaInstagram } from "react-icons/fa6";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { motion } from "framer-motion";
+import { fadeIn } from "../variantes";
 
 const Footer = ( ) => {
   return (
     <footer className='max-lg:w-[90%] m-auto mb-2 lg:w-[80%]'>
-        <h2 
+        <motion.h2 
+        variants={fadeIn("right", 0.2)}
+        initial={{ opacity: 0 }}
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.7 }}
         className="max-sm:text-2xl text-white font-bold text-5xl lg:my-5 my-5">
           Opus Lumina
-        </h2>
-        <div 
+        </motion.h2>
+        <motion.div
+        variants={fadeIn("right", 0.2)}
+        initial={{ opacity: 0 }}
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.7 }} 
         className="flex flex-col justify-evenly h-full text-white w-[90%] mx-auto gap-y-4">
           <div className="flex gap-8 ">
             <a className="bg-[#535c91] border-[#535c91] border-2  h-12 w-12 rounded-lg flex justify-center items-center shadow-md" href='https://www.facebook.com/magui.teran.3?mibextid=ZbWKwL' target='_blank'>
@@ -53,7 +63,7 @@ const Footer = ( ) => {
               <p className="text-[#a7a8a9]">mariteran920@gmail.com</p>
             </div>
           </div>
-        </div>
+        </motion.div>
         <p className='text-[#a7a8a9] text-center mt-2'>Copyright © 2024, Opus Lumina</p>
     </footer>
   )

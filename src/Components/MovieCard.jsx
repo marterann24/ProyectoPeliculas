@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 const MovieCard = ({movieCard ,setId}) => {
 
     const navigate = useNavigate()
-    const handleEvent = () =>{
-        setId(movieCard.id)
-        navigate(`/Detalle:${movieCard.id}`)
+    const handleEvent = (id) =>{
+      localStorage.setItem('idLocal' , id.toString())
+      let newId = localStorage.getItem('idLocal')
+        setId(Number(newId))
+        navigate(`/Detalle:${id}`)
     }
   return (
     <div className="text-white min-w-[200px] ">
@@ -15,10 +17,10 @@ const MovieCard = ({movieCard ,setId}) => {
         className="rounded-lg cursor-pointer"
         src={`${image}${movieCard.poster_path}`}
         alt=""
-        onClick={handleEvent}
+        onClick={()=>handleEvent(movieCard.id)}
       />
       <div className="text-center mt-2">
-        <p>{movieCard.release_date.substring(0,4)}</p>
+        <p>{movieCard.release_date?.substring(0,4)}</p>
       </div>
     </div>
   )

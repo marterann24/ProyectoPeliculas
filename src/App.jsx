@@ -33,21 +33,26 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  console.log(user);
+  useEffect(()=>{
+    let newId = localStorage.getItem('idLocal')
+    setId(Number(newId))
+  },[])
+  
+
   return (
     <>
-    <Nav setUser={setUser} user={user}/>
+    <Nav setUser={setUser} user={user} />
     <Routes>
 
         <Route path='/' element={<Landing/>} />
-        <Route path='/home' element={<Home setId={setId}/>} /> 
-        <Route path='/Series' element={<Series/>} /> 
-        <Route path='Inicio-Sesion' element={user?navigate('/Home'):<Sesion/> } />
-        <Route path='Registrar' element={user?navigate('/Home'):<Registro/>} />
+        <Route path='home' element={<Home setId={setId}/>} /> 
+        <Route path='Series' element={<Series setId={setId}/>} /> 
+        <Route path='Inicio-Sesion' element={<Sesion /> } />
+        <Route path='Registrar' element={<Registro/>} />
         <Route path='Perfil' element={<Perfil/>} />
         <Route path={`Detalle:${id}`} element={<Detalle id={id}/>} />
         <Route path='Plan' element={<Plan/>} />
-        <Route path='Buscar' element={<Buscar/>} />        
+        <Route path='Buscar' element={<Buscar setId={setId}/>} />        
       </Routes>
     </>
   )

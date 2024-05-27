@@ -1,8 +1,8 @@
 import cienciaFiccion  from './Components/img/ficcion1.jpeg'
-import action  from './Components/img/accion1.png'
-import comedy  from './Components/img/comedia.jpg'
-import drama  from './Components/img/drama.jpg'
-import horror  from './Components/img/horror.jpeg'
+import action  from './Components/img/accion2.jpeg'
+import comedy  from './Components/img/comedy.jpg'
+import drama  from './Components/img/drama2.webp'
+import horror  from './Components/img/terror.webp'
 
 export const genres = [
     {
