@@ -7,6 +7,8 @@ import Footer from './Footer'
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variantes";
+import {onAuthStateChanged} from 'firebase/auth'
+import { FirebaseAuth } from '../Firebase/config';
 
 export const Landing = () => {
   const divStyle = {
@@ -14,6 +16,14 @@ export const Landing = () => {
   };
 
   const navigate = useNavigate()
+
+  
+  onAuthStateChanged(FirebaseAuth, (usuarioFirebase)=>{
+    if(usuarioFirebase){
+      navigate('/home')
+    }
+  })
+
   
   return (
     <main>

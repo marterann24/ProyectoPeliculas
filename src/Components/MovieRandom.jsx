@@ -8,6 +8,7 @@ const MovieRandom = () => {
   const [movieRandom, setMovieRandom] = useState([]);
 
   const movie = movieRandom[Math.floor(Math.random() * movieRandom.length)];
+
   useEffect(() => {
     const randomApi = async () => {
       const { data } = await axios.get(
@@ -20,15 +21,14 @@ const MovieRandom = () => {
 
 
   return (
-    <main className="w-full h-[700px]  ">
+    <main className="w-full h-[700px] ">
+      
       <div className="h-full w-full">
         <div className="absolute w-full h-[700px] bg-gradient-to-t  from-[#040714]"></div>
         <div className="absolute max-sm:z-[5] top-[350px] left-[50px] text-white h-[200px] max-w-[700px] max-sm:left-[20px] ">
           <h2 className="text-5xl pb-4">{movie?.title}</h2>
           <p className="text-[18px]">{movie?.overview.substring(0,200)}</p>
           <div className="flex gap-5 pt-4">
-            <button
-            className="py-2 px-4 bg-white text-black font-bold rounded-md flex justify-center items-center gap-2"> Ver ahora</button>
             <button className="px-5 py-2 bg-slate-400 opacity-50 rounded-md flex justify-center items-center gap-2" >  More Info</button>
           </div>
         </div>

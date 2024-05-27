@@ -33,8 +33,8 @@ const Series = ( {setId}) => {
       return
     }
   }
-  
-  console.log(page)
+   
+
   return (
     <div className='py-16 lg:w-[80%] mx-auto max-lg:w-[90%]'>
       <h3 className="text-white text-2xl py-6 ">Series top</h3>
@@ -44,9 +44,17 @@ const Series = ( {setId}) => {
         <FaArrowRight onClick={()=>handleClick('Aumentar')}/>
       </div>
       <div className='flex max-md:flex-col max-md:gap-5 max-sm:h-[75vh] max-sm:xoverflow-y-auto sm:flex-wrap sm:justify-center md:gap-10 '>
-        {series.map(movie =>(
+        {series.length > 0 ? series.map(movie =>(
           <BuscarCard movie={movie} setId={setId} detailSerie={detailSerie} key={movie.id}/>
-        ))}
+        )):
+        <p className='text-white'>Cargando...</p>
+        }
+      </div>
+
+      <div className='text-white flex justify-center items-center gap-10 mb-5 text-xl'>
+        <FaArrowLeft onClick={()=>handleClick('Decrementar')} />
+        <span>{page}</span>
+        <FaArrowRight onClick={()=>handleClick('Aumentar')}/>
       </div>
     </div>
   )

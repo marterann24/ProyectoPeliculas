@@ -12,6 +12,7 @@ export const Detalle = ({ id }) => {
   const [videoSee, setVideoSee] = useState([]);
   const [video, setVideo] = useState(false);
   const [idLocal, setIdLocal] = useState("");
+  const [mensaje , setMensaje ] = useState('')
 
   useEffect(() => {
     const detailMovie = async () => {
@@ -47,15 +48,19 @@ export const Detalle = ({ id }) => {
   const divStyle = {
     backgroundImage: ` url(${image}${cardDetail.backdrop_path})`,
   };
-
-  const handleVideo = () => {
-    setVideo(true);
-  };
-
+  
   const newVideo = videoSee.find(
     (video) => video.name.substring(0, 16) === "Official Trailer"
   );
-
+  console.log(newVideo)
+  
+    const handleVideo = () => {
+      if(newVideo === undefined){
+        setMensaje('El video no esta disponible intentalo mas tarde')
+        return
+      }
+      setVideo(true);
+    };
   const opts = {
     height:'full',
     width:'full',
@@ -67,6 +72,7 @@ export const Detalle = ({ id }) => {
   const handleCerrar = () => {
     setVideo(false);
   };
+  console.log(mensaje)
   return (
     <div className="min-h-screen ">
       <div
@@ -94,6 +100,7 @@ export const Detalle = ({ id }) => {
 
             <div className="max-sm:py-2 max-sm:my-2 max-sm:text-center ">
               <div className="max-sm:flex max-sm:flex-col max-sm:items-center">
+                {mensaje && <p>{mensaje}</p>}
                 <div className="flex gap-2 items-center" onClick={handleVideo}>
                   <IoMdPlay /> Reproducir Trailer
                 </div>
