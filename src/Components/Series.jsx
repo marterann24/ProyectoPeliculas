@@ -5,12 +5,25 @@ const apikey = "726291ce1d3c6113c9428bc55798685f";
 import BuscarCard from './BuscarCard';
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
+import { FirebaseAuth } from '../Firebase/config';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Series = ( {setId}) => {
 
   const [series , setSeries] = useState([])
   const [detailSerie , setDetailSerie] = useState(false)
   const [page , setPage] = useState(1)
+  
+  const navigate = useNavigate()
+  useEffect(() => {
+    onAuthStateChanged(FirebaseAuth, (usuarioFirebase)=>{
+      if(!usuarioFirebase){
+        navigate('/')
+      }
+    })
+  },[])
+
   useEffect(()=>{
     const seriesDatos = async() =>{
       const {data} = await axios.get(`https://api.themoviedb.org/3/discover/tv?page=${page}&api_key=${apikey}`)

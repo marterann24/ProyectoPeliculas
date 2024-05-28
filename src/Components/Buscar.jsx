@@ -4,12 +4,23 @@ import { CiSearch } from "react-icons/ci";
 import axios from "axios";
 const apikey = "726291ce1d3c6113c9428bc55798685f";
 import BuscarCard from "./BuscarCard";
+import { onAuthStateChanged } from "firebase/auth";
+import { FirebaseAuth } from "../Firebase/config";
 
 const Buscar = ( {setId}) => {
   const navigate = useNavigate();
   const [searchMovie, setSearchMovie] = useState([]);
   const [value , setValue] = useState([])
   const [input , setInput] = useState('')
+ 
+  useEffect(() => {
+    onAuthStateChanged(FirebaseAuth, (usuarioFirebase)=>{
+      if(!usuarioFirebase){
+        navigate('/')
+      }
+    })
+  },[])
+
   useEffect(() => {
     const popularMovie = async () => {
       const {data} = await axios.get(
@@ -20,7 +31,6 @@ const Buscar = ( {setId}) => {
     popularMovie();
   }, []);
   const filterMovie = searchMovie.filter(movie => movie.backdrop_path !== null)
-
   const handleSearch = (e)=>{
     e.preventDefault()
     const searchMovie = async() =>{
@@ -29,6 +39,7 @@ const Buscar = ( {setId}) => {
     }
     searchMovie()
   }
+
 
   return (
     <div className="py-16 relative">
@@ -51,11 +62,11 @@ const Buscar = ( {setId}) => {
         <div>
           <h3 className="text-white text-2xl py-6">Disfruta de nuevas películas</h3>
           <div className="flex max-md:flex-col max-md:gap-5 max-sm:h-[65vh] max-sm:overflow-y-auto sm:flex-wrap sm:justify-center md:gap-10 ">
-            {value.length === 0 ? filterMovie.map((movie) => (
+            {value.length === 0 ? filterMovie?.map((movie) => (
               <BuscarCard movie={movie} setId={setId} key={movie.id}/>
-            )) : value.map((movie)=>(
+            )) : value.mapap((movie)=>(
               <BuscarCard movie={movie} setId={setId} key={movie.id}/>
-            )) 
+           ) )
             }
           </div>
         </div>

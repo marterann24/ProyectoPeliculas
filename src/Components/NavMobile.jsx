@@ -79,12 +79,16 @@ const NavMobile = ({user}) => {
               <li onClick={handleClick}>
                 <Link to={"/Home"}>Peliculas</Link>
               </li>
+              {user &&(
               <li onClick={handleClick}>
                 <Link to={"/Series"}>Series</Link>
               </li>
+              )}
+              {user &&(
               <li onClick={handleClick}>
                 <Link to={"/Buscar"}>Buscar</Link>
               </li>
+              )}
               {user &&(
                 <li onClick={handleCerrar}>
                   Cerrar Sesion

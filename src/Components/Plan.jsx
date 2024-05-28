@@ -25,7 +25,7 @@ export const Plan = () => {
               <h4 className='text-center text-2xl font-semibold '>Versión Gratis</h4>
               <span className='text-center text-xl block'>Algunas caracteristicas clave</span>
               <ul className='flex flex-col gap-1'>
-                <li>Peliculas y Series limitadas</li>
+                <li>Peliculas limitadas</li>
                 <li>Calidad Full HD </li>
                 <li>Publicidad</li>
               </ul>
