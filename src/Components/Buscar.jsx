@@ -64,7 +64,7 @@ const Buscar = ( {setId}) => {
           <div className="flex max-md:flex-col max-md:gap-5 max-sm:h-[65vh] max-sm:overflow-y-auto sm:flex-wrap sm:justify-center md:gap-10 ">
             {value.length === 0 ? filterMovie?.map((movie) => (
               <BuscarCard movie={movie} setId={setId} key={movie.id}/>
-            )) : value.mapap((movie)=>(
+            )) : value.map((movie)=>(
               <BuscarCard movie={movie} setId={setId} key={movie.id}/>
            ) )
             }
