@@ -2,10 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 const apikey = '726291ce1d3c6113c9428bc55798685f';
 const image = 'https://image.tmdb.org/t/p/original'
+import { useNavigate } from "react-router-dom";
 
-
-const MovieRandom = () => {
+const MovieRandom = ({setId}) => {
   const [movieRandom, setMovieRandom] = useState([]);
+  const navigate = useNavigate()
 
   const movie = movieRandom[Math.floor(Math.random() * movieRandom.length)];
 
@@ -19,6 +20,12 @@ const MovieRandom = () => {
     randomApi();
   }, []);
 
+  const handleDetalle = (id)=>{
+      localStorage.setItem('idLocal' , id.toString())
+      let newId = localStorage.getItem('idLocal')
+        setId(Number(newId))
+        navigate(`/Detalle:${id}`)
+  }
 
   return (
     <main className="w-full h-[700px] ">
@@ -29,7 +36,7 @@ const MovieRandom = () => {
           <h2 className="text-5xl pb-4">{movie?.title}</h2>
           <p className="text-[18px]">{movie?.overview.substring(0,200)}</p>
           <div className="flex gap-5 pt-4">
-            <button className="px-5 py-2 bg-slate-400 opacity-50 rounded-md flex justify-center items-center gap-2" >  More Info</button>
+            <button className="px-5 py-2 bg-slate-400 opacity-50 rounded-md flex justify-center items-center gap-2" onClick={()=>handleDetalle(movie.id)} >More Info</button>
           </div>
         </div>
         <img

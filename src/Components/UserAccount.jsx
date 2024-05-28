@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import logOut from "../functions/logOut";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
@@ -6,6 +6,15 @@ import { FirebaseAuth } from "../Firebase/config";
 import Swal from "sweetalert2";
 const UserAccount = ({ setAccount, user }) => {
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    onAuthStateChanged(FirebaseAuth, (usuarioFirebase)=>{
+      if(!usuarioFirebase){
+        navigate('/')
+      }
+    })
+  },[])
+
 
   const handleCerrar = () => {
     Swal.fire({
@@ -24,8 +33,7 @@ const UserAccount = ({ setAccount, user }) => {
           icon: "success"
         });
         setAccount(false);
-      logOut();
-      navigate("/");
+        logOut();
       }
     });
     

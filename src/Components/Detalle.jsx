@@ -126,7 +126,7 @@ export const Detalle = ({ id }) => {
               <div className="relative w-full h-full">
                 <YouTube
                   className=""
-                  iframeClassName='absolute inset-0 lg:w-full lg:h-full'
+                  iframeClassName='absolute inset-0 lg:w-full lg:h-full max-lg:w-full max-lg:h-full'
                   opts={opts}
                   videoId={`${newVideo.key}`}
                 />

@@ -44,7 +44,7 @@ const NavPc = ( {setAccount ,account ,user , setUser} ) => {
             </div>} 
             
         </div>
-        {account && <UserAccount setAccount={setAccount} user={user}/>}
+        {account && <UserAccount setAccount={setAccount} user={user} />}
       </div>
   )
 }

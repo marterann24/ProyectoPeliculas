@@ -72,17 +72,17 @@ const NavMobile = ({user}) => {
             }
             <ul className="mt-5 flex flex-col gap-8">
               {!user && (
-                <li >
+                <li onClick={handleClick}>
                   <Link to={"/"}>Inicio</Link>
                 </li>
               )}
-              <li>
+              <li onClick={handleClick}>
                 <Link to={"/Home"}>Peliculas</Link>
               </li>
-              <li>
+              <li onClick={handleClick}>
                 <Link to={"/Series"}>Series</Link>
               </li>
-              <li>
+              <li onClick={handleClick}>
                 <Link to={"/Buscar"}>Buscar</Link>
               </li>
               {user &&(

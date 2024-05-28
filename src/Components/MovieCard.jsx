@@ -11,6 +11,7 @@ const MovieCard = ({movieCard ,setId}) => {
         setId(Number(newId))
         navigate(`/Detalle:${id}`)
     }
+    
   return (
     <div className="text-white min-w-[200px] ">
       <img
